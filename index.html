@@ -326,34 +326,26 @@ with open('text_file.txt', 'w') as file:
         file.write(str(i) + '\n')
 print("Text Write Time:", time.time() - start)
 <h1>25. Basic Django Web Application</h1>
-To develop a basic web application with Django, you'll need to:
-
-Install Django:
-
-pip install django
-
-Create a Django project:
-
-django-admin startproject myproject
-cd myproject
-
-Create a Django app:
-python manage.py startapp myapp
-
-Add the app to your INSTALLED_APPS in settings.py.
-
-Create a simple view in myapp/views.py:
+<b>views</b>
 from django.http import HttpResponse
 
 def home(request):
-    return HttpResponse("Hello, Django!")
-Add the URL route in myapp/urls.py and include it in myproject/urls.py.
+    return HttpResponse("Hello, this is a basic Django web app!")
+<b>urls</b>
+from django.urls import path
+from . import views
 
-Run the server:
-python manage.py runserver
+urlpatterns = [
+    path('', views.home, name='home'),
+]
+from django.contrib import admin
+from django.urls import path, include
 
-To test the application performance, you can use a tool like Apache Benchmark:
-ab -n 100 -c 10 http://127.0.0.1:8000/    
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('myapp.urls')),
+]
+
 </pre>
 
 </body>
